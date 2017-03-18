@@ -1,0 +1,23 @@
+{
+  "name": "itrex_test",
+  "version": "1.0.0",
+  "description": "Simple slider for ITRex",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jQuery",
+    "Slider",
+    "Plugin"
+  ],
+  "author": "Yurii Holiuk",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1"
+  },
+  "dependencies": {
+    "jquery": "^3.2.0"
+  }
+}
