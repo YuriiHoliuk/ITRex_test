@@ -3,7 +3,11 @@
 ** SLIDER
 
 -----------------------------*/
+.label-slicer {
+    overflow: hidden;
 
+    width: 600px;
+}
 .slider-box {
     position: relative;
 
@@ -146,4 +150,31 @@
 
 .direct:not(:last-child) {
     margin-right: 5px;
+}
+
+
+
+/*-----------------------------
+
+** CONTROLS
+
+-----------------------------*/
+
+
+.label {
+    font-size: 14px;
+    line-height: 34px;
+
+    position: absolute;
+    top: 10px;
+    left: -75px;
+
+    width: 200px;
+
+    transform: rotate(-45deg);
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #5b7020;
+    background-color: #a0c933;
 }
