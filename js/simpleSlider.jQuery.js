@@ -16,6 +16,7 @@
             var shouldShowPaginator = options && options.paginator !== undefined ? options.paginator : true;
             var shouldShowRibbon = options && options.ribbon !== undefined ? options.ribbon : true;
             var loop = options && options.loop !== undefined ? options.loop : true;
+            var easingFunction = options && options.easing ? options.easing : 'swing';
 
 
 
@@ -84,9 +85,16 @@
             }
 
             // Add event listners
-            $('.simple-slider__next', $controls).on('click', nextSlide);
-            $('.simple-slider__prev', $controls).on('click', previousSlide);
-            $('.simple-slider__direct', $paginator).on('click', goToSlide);
+            if (shouldShowControls) {
+                $('.simple-slider__next', $controls).on('click', nextSlide);
+                $('.simple-slider__prev', $controls).on('click', previousSlide);
+            }
+            if (shouldShowPaginator) {
+                $('.simple-slider__direct', $paginator).on('click', goToSlide);
+            }
+
+            // Add mobile events
+            $slider.on('swipeleft', nextSlide).on('doubletap', nextSlide).on('swiperight', previousSlide);
 
 
             // Set Slider size
@@ -176,7 +184,8 @@
                         if (loop) {
                             timer = setTimeout(startLoop, delay);
                         }
-                    }
+                    },
+                    easing: easingFunction
                 });
                 setActive();
             }
@@ -204,7 +213,8 @@
                     currentSlide++;
 
                     $slider.animate({ 'margin-left': '-' + currentSlide * sliderWidth + 'px' }, {
-                        duration: animationDuration
+                        duration: animationDuration,
+                        easing: easingFunction
                     });
 
                     setActive();
