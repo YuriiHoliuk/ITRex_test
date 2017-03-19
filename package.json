@@ -14,12 +14,10 @@
   "author": "Yurii Holiuk",
   "license": "ISC",
   "devDependencies": {
-    "@types/jquery": "^2.0.41",
     "browser-sync": "^2.18.8",
     "gulp": "^3.9.1"
   },
   "dependencies": {
-    "jquery": "^3.2.0",
-    "jquery-touch-events": "git+https://github.com/benmajor/jQuery-Touch-Events.git"
+    "jquery": "^3.2.0"
   }
 }

@@ -4,12 +4,6 @@ body {
     background-image: url('../img/body_bg.jpg');
     background-repeat: repeat;
 }
-/*
-button:hover {
-    border: none;
-    outline: none;
-    background: none;
-}*/
 
 .my-slider {
     margin: 0 auto;

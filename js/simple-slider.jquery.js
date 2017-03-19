@@ -94,7 +94,7 @@
             }
 
             // Add mobile events
-            $slider.on('swipeleft', nextSlide).on('doubletap', nextSlide).on('swiperight', previousSlide);
+            $slider.on('swipeleft', nextSlide).on('swiperight', previousSlide);
 
 
             // Set Slider size
