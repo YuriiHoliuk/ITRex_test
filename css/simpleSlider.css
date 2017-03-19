@@ -4,7 +4,6 @@
 
 -----------------------------*/
 
-
 .slider-box {
     position: relative;
 
@@ -13,15 +12,21 @@
 
     border: 15px solid #fff;
 }
-.slider {
+
+.slider-container {
     overflow: hidden;
 
     width: 570px;
     height: 270px;
+}
+
+.slider {
+    display: block;
+
+    width: 3420px;
+    height: 270px;
     margin: 0;
     padding: 0;
-
-    list-style: none;
 }
 
 .slide {
@@ -29,6 +34,8 @@
 
     width: 570px;
     height: 270px;
+
+    list-style: none;
 }
 
 .slide img {
@@ -37,15 +44,11 @@
 }
 
 
-
-
-
 /*-----------------------------
 
 ** CONTROLS
 
 -----------------------------*/
-
 
 .arrow {
     position: absolute;

@@ -2,7 +2,7 @@
 
     $(function() {
 
-
+        $('.slider-box').simpleSlider();
 
     });
 
