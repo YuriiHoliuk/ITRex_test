@@ -24,7 +24,7 @@
 
 -----------------------------*/
 
-.arrow, .arrow:focus, .arrow:active, .arrow:hover, .direct, .direct:focus, .direct:active, .direct:hover {
+.simple-slider__arrow, .simple-slider__arrow:focus, .simple-slider__arrow:active, .simple-slider__arrow:hover, .simple-slider__direct, .simple-slider__direct:focus, .simple-slider__direct:active, .simple-slider__direct:hover {
     border: none;
     outline: none;
     background: none;
@@ -38,14 +38,14 @@
 
 -----------------------------*/
 
-.slider-box {
+.simple-slider {
     position: relative;
 
     width: 600px;
     margin: 0 auto;
 }
 
-.label-slicer {
+.simple-slider__ribbon-delimiter {
     position: relative;
 
     overflow: hidden;
@@ -58,17 +58,16 @@
     box-shadow: 0 0 3px rgba(0, 0, 0, .15), inset 0 0 10px rgba(0, 0, 0, .05), 0 7px 5px -5px rgba(0, 0, 0, .5);
 }
 
-.slider-container {
+.simple-slider__container {
     overflow: hidden;
 
     width: 570px;
     height: 270px;
 
     box-shadow: 0 0 10px rgba(0, 0, 0, .08), inset 0 0 4px rgba(0, 0, 0, .25);
-    /*border: 15px solid #fff;*/
 }
 
-.slider {
+.simple-slider__slider {
     display: block;
 
     width: 3420px;
@@ -77,7 +76,7 @@
     padding: 0;
 }
 
-.slide {
+.simple-slider__slide {
     float: left;
 
     width: 570px;
@@ -86,7 +85,7 @@
     list-style: none;
 }
 
-.slide img {
+.simple-slider__slide img {
     width: 100%;
     height: 100%;
 }
@@ -98,7 +97,7 @@
 
 -----------------------------*/
 
-.arrow {
+.simple-slider__arrow {
     position: absolute;
     top: 50%;
 
@@ -109,20 +108,20 @@
     height: 40px;
 }
 
-.arrow:active::before {
+.simple-slider__arrow:active::before {
     box-shadow: 0 1px 1px rgba(0, 0, 0, .3), inset -1px 0 0 1px #98c22a, inset 1px 0 0 1px #98c22a;
 }
 
-.arrow:hover::after {
+.simple-slider__arrow:hover::after {
     animation: left-right 1s infinite;
     animation-timing-function: linear;
 }
 
-.arrow:active::after {
+.simple-slider__arrow:active::after {
     animation: none;
 }
 
-.arrow::before {
+.simple-slider__arrow::before {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -137,7 +136,7 @@
     box-shadow: 0 1px 1px rgba(0, 0, 0, .3);
 }
 
-.arrow::after {
+.simple-slider__arrow::after {
     position: absolute;
     top: 50%;
 
@@ -147,39 +146,39 @@
     transform: translateY(-50%);
 }
 
-.prev {
+.simple-slider__prev {
     left: 0;
 
     transform: translate(-100%, -50%);
 }
 
-.prev::before {
+.simple-slider__prev::before {
     left: 0;
 }
 
-.prev::after {
+.simple-slider__prev::after {
     right: 5px;
 
     content: url('../img/arrow_left.png');
 }
 
-.next {
+.simple-slider__next {
     right: 0;
 
     transform: translate(100%, -50%);
 }
 
-.next::before {
+.simple-slider__next::before {
     right: 0;
 }
 
-.next::after {
+.simple-slider__next::after {
     left: 5px;
 
     content: url('../img/arrow_right.png');
 }
 
-.paginator {
+.simple-slider__paginator {
     position: absolute;
     top: 100%;
     left: 50%;
@@ -190,7 +189,7 @@
     transform: translateX(-50%);
 }
 
-.direct {
+.simple-slider__direct {
     display: inline-block;
 
     width: 10px;
@@ -205,21 +204,21 @@
     box-shadow: 0 1px 0 #fff, inset 0 1px 3px rgba(0, 0, 0, .6);
 }
 
-.direct:hover {
+.simple-slider__direct:hover {
     background-color: #fff;
 }
 
-.direct:active {
+.simple-slider__direct:active {
     transform: translate(1px, 1px);
 
     background-color: #98c22a;
 }
 
-.direct:not(:last-child) {
+.simple-slider__direct:not(:last-child) {
     margin-right: 5px;
 }
 
-.direct.active {
+.simple-slider__direct.active {
     background-color: #98c22a;
 }
 
@@ -230,7 +229,7 @@
 
 -----------------------------*/
 
-.label {
+.simple-slider__ribbon {
     font-family: 'ImpactRegular', sans-serif;
     font-size: 14px;
     line-height: 34px;

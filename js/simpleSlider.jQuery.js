@@ -4,47 +4,63 @@
 
         return this.each(function() {
 
-            // Cache DOM
-            var $sliderBox = $(this),
-                $sliderContainer = $('.slider-container', $sliderBox),
-                $slider = $('ul', $sliderBox),
-                $slides = $('li', $slider);
+            // Build & Cache DOM
+            var $sliderBox = $(this).addClass('simple-slider'); // If user uses other class for slider
+            var $slider = $('ul', $sliderBox).addClass('simple-slider__slider');
 
-            // Real last slide index === $slides.length before cloning
-            var lastSlide = $slides.length;
+            $sliderBox.empty();
 
             // Clone First slide
-            $slider.append($($slides[0]).clone());
+            $slider.append($('li:first-child', $slider).clone());
+
+            var $slides = $('li', $slider).addClass('simple-slider__slide');
+
+
+            // Real last slide index === $slides.length - 1 after cloning
+            var lastSlide = $slides.length - 1;
+
+
+            // Creating help containers
+            var $delimiter = $('<div class="simple-slider__ribbon-delimiter"></div>');
+            var $container = $('<div class="simple-slider__container"></div>');
+
+            //Create label
+            var $ribbon = $('<div class="simple-slider__ribbon">What is hot!</div>');
+
+
+            $container.append($slider);
+            $delimiter.append($container.add($ribbon)); // Main elements are here
+
 
             // Create Controls
             var $controls = $(`
                 <div class="controls">
-                    <button class="arrow prev"></button>
-                    <button class="arrow next"></button>
+                    <button class="simple-slider__arrow simple-slider__prev"></button>
+                    <button class="simple-slider__arrow simple-slider__next"></button>
                 </div>
             `);
 
-            var $paginator = $(`
-                <div class="paginator"></div>
-            `);
+            var $paginator = $('<div class="simple-slider__paginator"></div>');
 
             for (let i = 0; i < lastSlide; i++) {
-                $paginator.append('<button class="direct" data-slide="' + i + '"></button>');
+                $paginator.append('<button class="simple-slider__direct" data-slide="' + i + '"></button>');
             }
 
-            $('.direct:first-child', $paginator).addClass('active');
+            $('.simple-slider__direct:first-child', $paginator).addClass('active');
 
-            $controls.append($paginator);
-            $sliderBox.append($controls);
+            $controls.append($paginator); // Controls are here
+
+            // Append elements to DOM once
+            $sliderBox.append($delimiter.add($controls));
 
             // Add event listners
-            $('.next', $controls).on('click', nextSlide);
-            $('.prev', $controls).on('click', previousSlide);
-            $('.direct', $controls).on('click', goToSlide);
+            $('.simple-slider__next', $controls).on('click', nextSlide);
+            $('.simple-slider__prev', $controls).on('click', previousSlide);
+            $('.simple-slider__direct', $paginator).on('click', goToSlide);
 
 
             // Initialize parametres
-            var sliderWidth = $sliderContainer.width(),
+            var sliderWidth = $container.width(),
                 currentSlide = 0,
                 animationSpeed = 1000,
                 delay = 5000,
@@ -124,12 +140,12 @@
             function setActive() {
                 var activeNumber = currentSlide === lastSlide ? 0 : currentSlide;
 
-                $('.direct', $paginator).removeClass('active');
-                $('.direct[data-slide="' + activeNumber + '"]', $paginator).addClass('active');
+                $('.simple-slider__direct', $paginator).removeClass('active');
+                $('.simple-slider__direct[data-slide="' + activeNumber + '"]', $paginator).addClass('active');
 
             }
 
-            // Start loop
+            // Start loop function
             function startLoop() {
 
                 if (!$slider.is(':animated')) {
