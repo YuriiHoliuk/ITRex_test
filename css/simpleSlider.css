@@ -137,6 +137,7 @@
 
     border-radius: 50%;
     background-color: #969696;
+    box-shadow: 5 5 3 red;
 }
 
 .direct.active {

@@ -34,6 +34,8 @@
                 $paginator.append('<li class="direct" data-slide="' + i + '"></li>');
             }
 
+            $('.direct:first-child', $paginator).addClass('active');
+
             $controls.append($paginator);
             $sliderBox.append($controls);
 
@@ -44,6 +46,7 @@
 
             // Start autoplay slider
             var timer;
+            timer = setTimeout(startLoop, delay);
 
 
             // Initialize parametres
@@ -56,48 +59,63 @@
             //Move to the next slide
             function nextSlide() {
 
-                if (currentSlide === lastSlide) {
-                    currentSlide = 0;
-                    $slider.css('margin-left', 0);
+                if (!$slider.is(':animated')) {
+
+                    if (currentSlide === lastSlide) {
+                        currentSlide = 0;
+                        $slider.css('margin-left', 0);
+                    }
+
+                    currentSlide++;
+
+                    go();
                 }
-
-                currentSlide++;
-
-                go();
-
-
             }
 
             //Move to the previous slide
             function previousSlide() {
 
-                if (currentSlide === 0) {
-                    currentSlide = lastSlide;
-                    $slider.css('margin-left', '-' + lastSlide * sliderWidth + 'px');
+                if (!$slider.is(':animated')) {
+
+                    if (currentSlide === 0) {
+                        currentSlide = lastSlide;
+                        $slider.css('margin-left', '-' + lastSlide * sliderWidth + 'px');
+                    }
+
+                    currentSlide--;
+
+                    go();
                 }
 
-                currentSlide--;
-
-                go();
             }
 
             //Go to the particular slide
             function goToSlide() {
 
-                if (currentSlide === lastSlide) {
-                    currentSlide = 0;
-                    $slider.css('margin-left', 0);
+                if (!$slider.is(':animated')) {
+
+                    if (currentSlide === lastSlide) {
+                        currentSlide = 0;
+                        $slider.css('margin-left', 0);
+                    }
+
+                    currentSlide = +$(this).attr('data-slide');
+
+                    go();
                 }
-
-                currentSlide = +$(this).attr('data-slide');
-
-                go();
             }
 
 
             // General function for set margin
             function go() {
-                $slider.animate({ 'margin-left': '-' + currentSlide * sliderWidth + 'px' }, animationSpeed);
+                clearTimeout(timer);
+                $slider.animate({ 'margin-left': '-' + currentSlide * sliderWidth + 'px' }, {
+                    duration: animationSpeed,
+                    done: function() {
+                        timer = setTimeout(startLoop, delay);
+                    }
+                });
+                setActive();
             }
 
 
@@ -105,7 +123,30 @@
             function setActive() {
                 var activeNumber = currentSlide === lastSlide ? 0 : currentSlide;
 
+                $('.direct', $paginator).removeClass('active');
+                $('.direct[data-slide="' + activeNumber + '"]', $paginator).addClass('active');
+
             }
+
+            // Start loop
+            function startLoop() {
+
+                if (currentSlide === lastSlide) {
+                    currentSlide = 0;
+                    $slider.css('margin-left', 0);
+                }
+
+                currentSlide++;
+
+                $slider.animate({ 'margin-left': '-' + currentSlide * sliderWidth + 'px' }, {
+                    duration: animationSpeed
+                });
+
+                setActive();
+
+                timer = setTimeout(startLoop, delay);
+            }
+
 
         });
 
