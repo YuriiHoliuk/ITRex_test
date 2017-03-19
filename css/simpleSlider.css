@@ -41,18 +41,14 @@
 .simple-slider {
     position: relative;
 
-    width: 600px;
-    margin: 0 auto;
+    margin-right: 40px;
+    margin-left: 40px;
 }
 
 .simple-slider__ribbon-delimiter {
     position: relative;
 
     overflow: hidden;
-
-    width: 570px;
-    height: 270px;
-    padding: 15px;
 
     background: #fff;
     box-shadow: 0 0 3px rgba(0, 0, 0, .15), inset 0 0 10px rgba(0, 0, 0, .05), 0 7px 5px -5px rgba(0, 0, 0, .5);
@@ -61,26 +57,18 @@
 .simple-slider__container {
     overflow: hidden;
 
-    width: 570px;
-    height: 270px;
-
     box-shadow: 0 0 10px rgba(0, 0, 0, .08), inset 0 0 4px rgba(0, 0, 0, .25);
 }
 
 .simple-slider__slider {
     display: block;
 
-    width: 3420px;
-    height: 270px;
     margin: 0;
     padding: 0;
 }
 
 .simple-slider__slide {
     float: left;
-
-    width: 570px;
-    height: 270px;
 
     list-style: none;
 }
