@@ -1,5 +1,3 @@
-/// <reference path="../node_modules/@types/jquery/index.d.ts" />
-
 (function($) {
 
     $.fn.simpleSlider = function() {
@@ -30,8 +28,8 @@
                 <div class="paginator"></div>
             `);
 
-            for (let i = 0; i < $slides.length; i++) {
-                $paginator.append('<li class="direct" data-slide="' + i + '"></li>');
+            for (let i = 0; i < lastSlide; i++) {
+                $paginator.append('<button class="direct" data-slide="' + i + '"></button>');
             }
 
             $('.direct:first-child', $paginator).addClass('active');
@@ -44,16 +42,19 @@
             $('.prev', $controls).on('click', previousSlide);
             $('.direct', $controls).on('click', goToSlide);
 
-            // Start autoplay slider
-            var timer;
-            timer = setTimeout(startLoop, delay);
-
 
             // Initialize parametres
             var sliderWidth = $sliderContainer.width(),
                 currentSlide = 0,
                 animationSpeed = 1000,
-                delay = 5000;
+                delay = 5000,
+                timer;
+
+
+            // Start autoplay slider
+            (function() {
+                timer = setTimeout(startLoop, delay);
+            })();
 
 
             //Move to the next slide
@@ -131,20 +132,24 @@
             // Start loop
             function startLoop() {
 
-                if (currentSlide === lastSlide) {
-                    currentSlide = 0;
-                    $slider.css('margin-left', 0);
+                if (!$slider.is(':animated')) {
+
+                    if (currentSlide === lastSlide) {
+                        currentSlide = 0;
+                        $slider.css('margin-left', 0);
+                    }
+
+                    currentSlide++;
+
+                    $slider.animate({ 'margin-left': '-' + currentSlide * sliderWidth + 'px' }, {
+                        duration: animationSpeed
+                    });
+
+                    setActive();
+
+                    timer = setTimeout(startLoop, delay);
                 }
 
-                currentSlide++;
-
-                $slider.animate({ 'margin-left': '-' + currentSlide * sliderWidth + 'px' }, {
-                    duration: animationSpeed
-                });
-
-                setActive();
-
-                timer = setTimeout(startLoop, delay);
             }
 
 

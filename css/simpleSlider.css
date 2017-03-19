@@ -1,20 +1,61 @@
 /*-----------------------------
 
-** SLIDER
+** Fonts
 
 -----------------------------*/
-.label-slicer {
-    overflow: hidden;
 
-    width: 600px;
+
+@font-face {
+    font-family: 'ImpactRegular';
+    font-weight: normal;
+    font-style: normal;
+
+    src: url('../fonts/ImpactRegular/ImpactRegular.eot');
+    src: url('../fonts/ImpactRegular/ImpactRegular.eot?#iefix')format('embedded-opentype'),
+    url('../fonts/ImpactRegular/ImpactRegular.woff') format('woff'),
+    url('../fonts/ImpactRegular/ImpactRegular.ttf') format('truetype');
 }
+
+
+
+/*-----------------------------
+
+** Reset
+
+-----------------------------*/
+
+.arrow, .arrow:focus, .arrow:active, .arrow:hover, .direct, .direct:focus, .direct:active, .direct:hover {
+    border: none;
+    outline: none;
+    background: none;
+}
+
+
+
+/*-----------------------------
+
+** Slider
+
+-----------------------------*/
+
 .slider-box {
     position: relative;
 
-    width: 570px;
+    width: 600px;
     margin: 0 auto;
+}
 
-    border: 15px solid #fff;
+.label-slicer {
+    position: relative;
+
+    overflow: hidden;
+
+    width: 570px;
+    height: 270px;
+    padding: 15px;
+
+    background: #fff;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .15), inset 0 0 10px rgba(0, 0, 0, .05), 0 7px 5px -5px rgba(0, 0, 0, .5);
 }
 
 .slider-container {
@@ -22,6 +63,9 @@
 
     width: 570px;
     height: 270px;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, .08), inset 0 0 4px rgba(0, 0, 0, .25);
+    /*border: 15px solid #fff;*/
 }
 
 .slider {
@@ -50,7 +94,7 @@
 
 /*-----------------------------
 
-** CONTROLS
+** C0ntrols
 
 -----------------------------*/
 
@@ -65,6 +109,19 @@
     height: 40px;
 }
 
+.arrow:active::before {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .3), inset -1px 0 0 1px #98c22a, inset 1px 0 0 1px #98c22a;
+}
+
+.arrow:hover::after {
+    animation: left-right 1s infinite;
+    animation-timing-function: linear;
+}
+
+.arrow:active::after {
+    animation: none;
+}
+
 .arrow::before {
     position: absolute;
     top: 0;
@@ -75,7 +132,9 @@
     content: '';
 
     border-radius: 100%;
-    background-color: #4a4a4a;
+    background-image: url('../img/arrow_bg.jpg');
+    background-repeat: repeat;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .3);
 }
 
 .arrow::after {
@@ -91,7 +150,7 @@
 .prev {
     left: 0;
 
-    transform: translate(-100%, -50%) translate(-15px);
+    transform: translate(-100%, -50%);
 }
 
 .prev::before {
@@ -107,7 +166,7 @@
 .next {
     right: 0;
 
-    transform: translate(100%, -50%) translateX(15px);
+    transform: translate(100%, -50%);
 }
 
 .next::before {
@@ -125,7 +184,7 @@
     top: 100%;
     left: 50%;
 
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 0;
 
     transform: translateX(-50%);
@@ -136,15 +195,23 @@
 
     width: 10px;
     height: 10px;
+    margin: 0;
+    padding: 0;
 
     list-style: none;
 
     border-radius: 50%;
     background-color: #969696;
-    box-shadow: 5 5 3 red;
+    box-shadow: 0 1px 0 #fff, inset 0 1px 3px rgba(0, 0, 0, .6);
 }
 
-.direct.active {
+.direct:hover {
+    background-color: #fff;
+}
+
+.direct:active {
+    transform: translate(1px, 1px);
+
     background-color: #98c22a;
 }
 
@@ -152,22 +219,25 @@
     margin-right: 5px;
 }
 
+.direct.active {
+    background-color: #98c22a;
+}
 
 
 /*-----------------------------
 
-** CONTROLS
+** Label
 
 -----------------------------*/
 
-
 .label {
+    font-family: 'ImpactRegular', sans-serif;
     font-size: 14px;
     line-height: 34px;
 
     position: absolute;
-    top: 10px;
-    left: -75px;
+    top: 20px;
+    left: -60px;
 
     width: 200px;
 
@@ -176,5 +246,39 @@
     text-transform: uppercase;
 
     color: #5b7020;
-    background-color: #a0c933;
+    border-image-repeat: repeat;
+    background-image: url('../img/label_bg.jpg');
+    box-shadow: 3px 3px 7px rgba(80, 80, 80, .7), inset 1px 1px 5px rgba(80, 80, 80, .2), inset -1px -1px 5px rgba(80, 80, 80, .2);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .6);
+}
+
+
+
+/*-----------------------------
+
+** Animation
+
+-----------------------------*/
+
+
+@keyframes left-right {
+    0% {
+        transform: translate(0, -50%);
+    }
+
+    25% {
+        transform: translate(-2px, -50%);
+    }
+
+    50% {
+        transform: translate(0, -50%);
+    }
+
+    75% {
+        transform: translate(2px, -50%);
+    }
+
+    100% {
+        transform: translate(0, -50%);
+    }
 }

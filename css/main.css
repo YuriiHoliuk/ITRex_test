@@ -5,7 +5,7 @@ body {
     background-repeat: repeat;
 }
 
-button, button:focus, button:active, button:hover {
+button:hover {
     border: none;
     outline: none;
     background: none;
